@@ -12,7 +12,6 @@ jobs:
       - name: Send Slack alert for P0 issue
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PRIORITY_GITHUB_ISSUES_WEBHOOK }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: |
           TITLE=$(jq -r '.issue.title' "$GITHUB_EVENT_PATH")
           NUMBER=$(jq -r '.issue.number' "$GITHUB_EVENT_PATH")
