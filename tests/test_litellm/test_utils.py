@@ -170,7 +170,7 @@ def test_all_model_configs():
         drop_params=False,
     ) == {"max_tokens": 10}
 
-    from litellm.llms.volcengine import VolcEngineConfig
+    from litellm.llms.volcengine.chat.transformation import VolcEngineChatConfig as VolcEngineConfig
 
     assert "max_completion_tokens" in VolcEngineConfig().get_supported_openai_params(
         model="llama3"
@@ -549,6 +549,7 @@ def test_aaamodel_prices_and_context_window_json_is_valid():
                         "completion",
                         "embedding",
                         "image_generation",
+                        "video_generation",
                         "moderation",
                         "rerank",
                         "responses",
@@ -636,7 +637,7 @@ def test_aaamodel_prices_and_context_window_json_is_valid():
                     "type": "array",
                     "items": {
                         "type": "string",
-                        "enum": ["text", "image", "audio", "code"],
+                        "enum": ["text", "image", "audio", "code", "video"],
                     },
                 },
                 "supports_native_streaming": {"type": "boolean"},
